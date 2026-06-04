@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SPS Browser Pro — Official Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #07090f;
+  --bg2: #0d1117;
+  --bg3: #131820;
+  --accent: #1a73e8;
+  --accent2: #00d4ff;
+  --accent3: #7c3aed;
+  --text: #e8edf5;
+  --text2: #8892a4;
+  --border: #1e2635;
+  --card: #0f1521;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --glow: 0 0 40px rgba(26,115,232,0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+::selection{background:var(--accent);color:#fff;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,9,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 5%;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.875rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:.2s;cursor:pointer;}
+.nav-links a:hover{color:var(--text);background:var(--bg3);}
+.nav-cta{background:var(--accent)!important;color:#fff!important;border-radius:10px!important;padding:8px 20px!important;font-weight:600!important;}
+.nav-cta:hover{background:#1557b0!important;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:64px;}
+.page.active{display:block;}
+
+/* ── HOME ── */
+#home{position:relative;overflow:hidden;}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 5% 60px;position:relative;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(26,115,232,0.15) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(0,212,255,0.08) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,115,232,0.1);border:1px solid rgba(26,115,232,0.3);border-radius:100px;padding:6px 16px;font-size:0.8rem;font-weight:600;color:var(--accent2);margin-bottom:28px;animation:fadeUp .6s ease both;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:800;line-height:1.05;margin-bottom:24px;animation:fadeUp .7s .1s ease both;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:1.2rem;color:var(--text2);max-width:600px;line-height:1.7;margin-bottom:40px;font-weight:300;animation:fadeUp .7s .2s ease both;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s .3s ease both;}
+.btn-primary{background:var(--accent);color:#fff;border:none;padding:14px 32px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:.25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;}
+.btn-primary:hover{background:#1557b0;transform:translateY(-2px);box-shadow:0 8px 30px rgba(26,115,232,0.4);}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border);padding:14px 32px;border-radius:12px;font-size:1rem;font-weight:500;cursor:pointer;transition:.25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;}
+.btn-secondary:hover{background:var(--bg3);border-color:var(--accent);transform:translateY(-2px);}
+.stats-strip{display:flex;justify-content:center;gap:60px;margin-top:70px;flex-wrap:wrap;animation:fadeUp .7s .5s ease both;}
+.stat h3{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--text2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat p{font-size:0.85rem;color:var(--text2);margin-top:2px;}
+.features-preview{padding:80px 5%;background:var(--bg2);}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;text-align:center;margin-bottom:12px;}
+.section-sub{text-align:center;color:var(--text2);max-width:560px;margin:0 auto 56px;line-height:1.7;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1200px;margin:0 auto;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;transition:.3s;cursor:default;}
+.feat-card:hover{border-color:rgba(26,115,232,0.4);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.feat-icon{font-size:2rem;margin-bottom:14px;}
+.feat-card h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+.feat-card p{color:var(--text2);font-size:0.9rem;line-height:1.6;}
+.browser-mockup{max-width:960px;margin:60px auto 0;background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.5);}
+.mockup-bar{background:var(--card);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dot.r{background:#ef4444;}.dot.y{background:#f59e0b;}.dot.g{background:#22c55e;}
+.mockup-url{flex:1;background:var(--bg2);border-radius:8px;padding:6px 14px;font-size:0.8rem;color:var(--text2);margin:0 12px;}
+.mockup-body{padding:32px;min-height:200px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.speed-tile{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;font-size:1.5rem;}
+.speed-tile p{font-size:0.7rem;color:var(--text2);margin-top:6px;}
+
+/* ── FEATURES ── */
+#features{padding:100px 5%;}
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto 80px;}
+.feature-row.reverse{direction:rtl;}
+.feature-row.reverse>*{direction:ltr;}
+.feature-content h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:16px;}
+.feature-content p{color:var(--text2);line-height:1.8;margin-bottom:20px;}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.feature-list li{display:flex;align-items:center;gap:10px;color:var(--text2);font-size:0.9rem;}
+.feature-list li::before{content:'✓';color:var(--success);font-weight:700;font-size:0.9rem;}
+.feature-visual{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;display:flex;align-items:center;justify-content:center;font-size:6rem;min-height:280px;}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+.badge{background:rgba(26,115,232,0.1);border:1px solid rgba(26,115,232,0.25);border-radius:100px;padding:5px 14px;font-size:0.8rem;color:var(--accent2);font-weight:500;}
+
+/* ── DOWNLOAD ── */
+#download{padding:100px 5%;background:var(--bg2);}
+.download-hero{text-align:center;margin-bottom:60px;}
+.download-hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;margin-bottom:16px;}
+.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
+.dl-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;text-align:center;transition:.3s;}
+.dl-card.featured{border-color:var(--accent);box-shadow:0 0 40px rgba(26,115,232,0.15);}
+.dl-card:hover{transform:translateY(-4px);}
+.dl-os{font-size:3.5rem;margin-bottom:16px;}
+.dl-card h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:8px;}
+.dl-card p{color:var(--text2);font-size:0.875rem;margin-bottom:24px;}
+.dl-version{font-size:0.75rem;color:var(--text2);margin-top:12px;}
+.dl-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:.25s;text-decoration:none;display:block;font-family:'DM Sans',sans-serif;}
+.dl-btn:hover{background:#1557b0;transform:translateY(-1px);}
+.dl-btn.outline{background:transparent;border:1px solid var(--border);color:var(--text);}
+.dl-btn.outline:hover{background:var(--bg3);border-color:var(--accent);}
+.sys-req{max-width:700px;margin:60px auto 0;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;}
+.sys-req h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:20px;}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.req-item label{font-size:0.8rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.req-item p{font-size:0.9rem;margin-top:4px;}
+
+/* ── PRIVACY ── */
+#privacy{padding:100px 5%;}
+.privacy-hero{text-align:center;margin-bottom:60px;}
+.shield-visual{text-align:center;font-size:6rem;margin-bottom:40px;animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+.privacy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
+.privacy-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;border-left:3px solid var(--accent);}
+.privacy-card h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:10px;}
+.privacy-card p{color:var(--text2);font-size:0.88rem;line-height:1.6;}
+.tracker-list{max-width:800px;margin:60px auto 0;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;}
+.tracker-list h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:20px;}
+.tracker-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tracker-tag{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:100px;padding:4px 12px;font-size:0.78rem;color:#fca5a5;}
+
+/* ── CHANGELOG ── */
+#changelog{padding:100px 5%;background:var(--bg2);}
+.changelog-timeline{max-width:800px;margin:0 auto;}
+.cl-entry{border-left:2px solid var(--border);padding-left:28px;margin-bottom:44px;position:relative;}
+.cl-entry::before{content:'';position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--accent);}
+.cl-entry.latest::before{background:var(--accent2);box-shadow:0 0 12px var(--accent2);}
+.cl-version{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.cl-version h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;}
+.cl-date{font-size:0.8rem;color:var(--text2);}
+.cl-tag{font-size:0.72rem;background:rgba(34,197,94,0.15);color:#4ade80;border:1px solid rgba(34,197,94,0.2);border-radius:100px;padding:3px 10px;font-weight:600;}
+.cl-items{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.cl-items li{color:var(--text2);font-size:0.9rem;display:flex;align-items:flex-start;gap:10px;}
+.cl-items li span{flex-shrink:0;}
+
+/* ── FAQ ── */
+#faq{padding:100px 5%;}
+.faq-list{max-width:800px;margin:0 auto;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.faq-q{padding:20px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:500;transition:.2s;}
+.faq-q:hover{color:var(--accent2);}
+.faq-arrow{font-size:1.2rem;transition:.3s;color:var(--text2);}
+.faq-a{display:none;padding:0 24px 20px;color:var(--text2);line-height:1.7;font-size:0.9rem;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-arrow{transform:rotate(90deg);}
+
+/* ── ABOUT ── */
+#about{padding:100px 5%;background:var(--bg2);}
+.about-hero{text-align:center;margin-bottom:60px;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:0 auto 60px;}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;}
+.team-avatar{font-size:3rem;margin-bottom:14px;}
+.team-card h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:4px;}
+.team-card p{color:var(--accent2);font-size:0.85rem;}
+.team-card span{color:var(--text2);font-size:0.82rem;display:block;margin-top:8px;line-height:1.5;}
+.mission-box{max-width:800px;margin:0 auto;background:linear-gradient(135deg,rgba(26,115,232,0.08),rgba(0,212,255,0.05));border:1px solid rgba(26,115,232,0.2);border-radius:20px;padding:48px;text-align:center;}
+.mission-box h2{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:16px;}
+.mission-box p{color:var(--text2);line-height:1.8;}
+
+/* ── SCREENSHOTS ── */
+#screenshots{padding:100px 5%;}
+.ss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1200px;margin:0 auto;}
+.ss-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.3s;cursor:pointer;}
+.ss-card:hover{transform:translateY(-4px);border-color:rgba(26,115,232,0.4);}
+.ss-preview{background:var(--bg3);padding:40px 30px;min-height:200px;display:flex;flex-direction:column;gap:8px;}
+.ss-bar{background:var(--card);border-radius:6px;padding:6px 10px;font-size:0.7rem;color:var(--text2);display:flex;align-items:center;gap:6px;}
+.ss-dots{display:flex;gap:4px;}
+.ss-dot{width:8px;height:8px;border-radius:50%;}
+.ss-content{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;}
+.ss-tile{background:var(--bg2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;padding:14px;}
+.ss-label{padding:16px 20px;}
+.ss-label h4{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:4px;}
+.ss-label p{color:var(--text2);font-size:0.82rem;}
+
+/* ── CONTACT ── */
+#contact{padding:100px 5%;background:var(--bg2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto;}
+.contact-info h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:16px;}
+.contact-info p{color:var(--text2);line-height:1.8;margin-bottom:28px;}
+.contact-links{display:flex;flex-direction:column;gap:14px;}
+.contact-link{display:flex;align-items:center;gap:12px;color:var(--text2);text-decoration:none;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:.2s;font-size:0.9rem;}
+.contact-link:hover{border-color:var(--accent);color:var(--text);}
+.contact-link span{font-size:1.2rem;}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:0.85rem;font-weight:600;color:var(--text2);margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:.2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,115,232,0.15);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-submit{width:100%;background:var(--accent);color:#fff;border:none;padding:14px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:.25s;font-family:'DM Sans',sans-serif;}
+.form-submit:hover{background:#1557b0;transform:translateY(-1px);}
+
+/* ── SETTINGS GUIDE ── */
+#guide{padding:100px 5%;}
+.guide-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;max-width:1100px;margin:0 auto;}
+.guide-nav{position:sticky;top:84px;align-self:start;}
+.guide-nav h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);font-weight:600;margin-bottom:12px;}
+.guide-nav a{display:block;color:var(--text2);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:0.875rem;transition:.2s;border-left:2px solid transparent;}
+.guide-nav a:hover{color:var(--text);background:var(--bg3);}
+.guide-nav a.active{color:var(--accent2);border-left-color:var(--accent);}
+.guide-content section{margin-bottom:52px;}
+.guide-content h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:16px;padding-top:20px;}
+.guide-content h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin:24px 0 10px;color:var(--accent2);}
+.guide-content p{color:var(--text2);line-height:1.8;margin-bottom:14px;font-size:0.93rem;}
+.guide-tip{background:rgba(26,115,232,0.08);border:1px solid rgba(26,115,232,0.2);border-radius:10px;padding:16px 20px;margin:16px 0;}
+.guide-tip strong{color:var(--accent2);}
+.shortcut-table{width:100%;border-collapse:collapse;font-size:0.875rem;}
+.shortcut-table th{text-align:left;padding:10px 14px;background:var(--card);border-bottom:1px solid var(--border);font-size:0.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);}
+.shortcut-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);}
+.shortcut-table tr:last-child td{border-bottom:none;}
+.kbd{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-family:monospace;font-size:0.8rem;color:var(--text);}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 5% 30px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand .nav-logo{display:block;margin-bottom:14px;font-size:1.2rem;}
+.footer-brand p{color:var(--text2);font-size:0.875rem;line-height:1.7;}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:16px;}
+.footer-col a{display:block;color:var(--text2);text-decoration:none;font-size:0.875rem;margin-bottom:10px;transition:.2s;cursor:pointer;}
+.footer-col a:hover{color:var(--text);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-bottom p{color:var(--text2);font-size:0.82rem;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{opacity:0;transform:translateY(20px);transition:.6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* NOTIFICATION */
+.notif{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 20px;font-size:0.875rem;z-index:9999;transform:translateY(80px);opacity:0;transition:.3s;max-width:300px;}
+.notif.show{transform:none;opacity:1;}
+.notif.success{border-color:var(--success);color:#4ade80;}
+.notif.error{border-color:var(--danger);color:#fca5a5;}
+
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 5%;}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+  .hero h1{font-size:2.4rem;}
+  .stats-strip{gap:30px;}
+  .feature-row,.contact-grid{grid-template-columns:1fr;}
+  .feature-row.reverse{direction:ltr;}
+  .guide-layout{grid-template-columns:1fr;}
+  .guide-nav{display:none;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .req-grid{grid-template-columns:1fr;}
+  .ss-content{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">SPS Browser Pro</div>
+    <div class="nav-links" id="navLinks">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('features')">Features</a>
+      <a onclick="showPage('screenshots')">Screenshots</a>
+      <a onclick="showPage('privacy')">Privacy</a>
+      <a onclick="showPage('changelog')">Changelog</a>
+      <a onclick="showPage('guide')">User Guide</a>
+      <a onclick="showPage('faq')">FAQ</a>
+      <a onclick="showPage('about')">About</a>
+      <a onclick="showPage('contact')">Contact</a>
+      <a class="nav-cta" onclick="showPage('download')">⬇ Download</a>
+    </div>
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HOME ══════════════════ -->
+<div class="page active" id="home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-badge">🆕 Version 23.0.0 Now Available</div>
+    <h1>Browse the web<br/><span>smarter & safer</span></h1>
+    <p>SPS Browser Pro is a powerful, privacy-first desktop browser with built-in ad blocking, password management, reading mode, and AI assistant integration — all in one beautifully designed app.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" onclick="showPage('download')">⬇ Download Free</a>
+      <a class="btn-secondary" onclick="showPage('features')">Explore Features →</a>
+    </div>
+    <div class="stats-strip">
+      <div class="stat"><h3>100%</h3><p>Free & Open</p></div>
+      <div class="stat"><h3>50+</h3><p>Features</p></div>
+      <div class="stat"><h3>10</h3><p>Search Engines</p></div>
+      <div class="stat"><h3>8</h3><p>Theme Presets</p></div>
+    </div>
+  </div>
+
+  <div class="features-preview">
+    <p class="section-title">Everything you need, nothing you don't</p>
+    <p class="section-sub">SPS Browser Pro packs professional-grade tools into a clean, fast experience designed for power users and everyday browsing alike.</p>
+    <div class="features-grid">
+      <div class="feat-card"><div class="feat-icon">🛡️</div><h3>Privacy Shield</h3><p>Block trackers, ads, cryptominers, and social trackers before they even load. Zero data sold to anyone.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔐</div><h3>Password Manager</h3><p>Built-in encrypted password vault with strength checker, generator, and auto-fill support.</p></div>
+      <div class="feat-card"><div class="feat-icon">🤖</div><h3>AI Hub</h3><p>One-click access to ChatGPT, Gemini, Claude, Perplexity, Grok, Meta AI, and SPS AI Studio.</p></div>
+      <div class="feat-card"><div class="feat-icon">📚</div><h3>Reading List & Notes</h3><p>Save articles for later and jot down thoughts with the built-in scratchpad — synced to your profile.</p></div>
+      <div class="feat-card"><div class="feat-icon">⚡</div><h3>Instant Answers</h3><p>Get math results, unit conversions, and time queries answered right in the URL bar without searching.</p></div>
+      <div class="feat-card"><div class="feat-icon">🧩</div><h3>Extensions & Userscripts</h3><p>Inject custom JavaScript and CSS into any page with the built-in userscript manager.</p></div>
+      <div class="feat-card"><div class="feat-icon">👤</div><h3>Multi-Profile</h3><p>Create separate browser profiles for work, personal, and shared computers — each fully isolated.</p></div>
+      <div class="feat-card"><div class="feat-icon">📸</div><h3>Screenshot & PDF</h3><p>Capture full-page screenshots and export any page to PDF with a single click.</p></div>
+      <div class="feat-card"><div class="feat-icon">🎨</div><h3>Themes & Customization</h3><p>8 stunning preset themes plus full custom color picker for accent and background colors.</p></div>
+    </div>
+
+    <div class="browser-mockup">
+      <div class="mockup-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="mockup-url">🔒 &nbsp; spscompany-rikdev.github.io/sps-search-engine</div>
+        <span style="color:var(--text2);font-size:.75rem;">v23.0.0</span>
+      </div>
+      <div class="mockup-body">
+        <div class="speed-tile">🔍<p>Google</p></div>
+        <div class="speed-tile">📺<p>YouTube</p></div>
+        <div class="speed-tile">🐙<p>GitHub</p></div>
+        <div class="speed-tile">📖<p>Wikipedia</p></div>
+        <div class="speed-tile">🤖<p>Reddit</p></div>
+        <div class="speed-tile">🧠<p>ChatGPT</p></div>
+        <div class="speed-tile">⭐<p>SPS Search</p></div>
+        <div class="speed-tile">📧<p>Gmail</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FEATURES ══════════════════ -->
+<div class="page" id="features">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">Powerful Features</h1>
+    <p class="section-sub">Every tool you need for a faster, safer, and smarter browsing experience — built in, no plugins required.</p>
+  </div>
+
+  <div style="padding:0 5% 80px;">
+    <div class="feature-row">
+      <div class="feature-content">
+        <h2>🛡️ Privacy Shield — Always On</h2>
+        <p>SPS Browser Pro runs a multi-layer privacy interceptor that blocks threats at the network level before they ever reach your screen. No performance hit, no third-party extension required.</p>
+        <ul class="feature-list">
+          <li>Block 30+ known tracker domains</li>
+          <li>Cryptomining protection (blocks Coinhive, CryptoLoot, etc.)</li>
+          <li>Social tracker isolation (Facebook, Twitter, LinkedIn pixels)</li>
+          <li>Total Cookie Protection — cookies are scoped per site</li>
+          <li>Do Not Track header sent automatically</li>
+          <li>Live blocked count shown in status bar</li>
+        </ul>
+        <div class="badge-row">
+          <span class="badge">Ad Blocker</span>
+          <span class="badge">Anti-Tracking</span>
+          <span class="badge">Anti-Fingerprint</span>
+          <span class="badge">HTTPS-Only Mode</span>
+        </div>
+      </div>
+      <div class="feature-visual">🛡️</div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-content">
+        <h2>🔐 Password Manager</h2>
+        <p>Stop reusing weak passwords. SPS Browser Pro includes a full-featured password vault with AES-level hashing, strength analysis, and a cryptographically secure password generator.</p>
+        <ul class="feature-list">
+          <li>Store unlimited usernames & passwords</li>
+          <li>Password strength checker (Weak / Medium / Strong)</li>
+          <li>Generate 8–64 character passwords with symbols</li>
+          <li>One-click copy to clipboard</li>
+          <li>Search and filter saved entries</li>
+          <li>Export passwords to CSV</li>
+        </ul>
+      </div>
+      <div class="feature-visual">🔐</div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-content">
+        <h2>🤖 AI Hub Integration</h2>
+        <p>Access the world's best AI assistants without switching tabs. The SPS AI Hub gives you instant one-click access to 7 leading AI tools right from the toolbar.</p>
+        <ul class="feature-list">
+          <li>ChatGPT (OpenAI)</li>
+          <li>Google Gemini</li>
+          <li>Claude by Anthropic</li>
+          <li>Meta AI</li>
+          <li>Perplexity AI</li>
+          <li>Grok by xAI</li>
+          <li>SPS AI Studio (built-in)</li>
+        </ul>
+      </div>
+      <div class="feature-visual">🤖</div>
+    </div>
+
+    <div class="feature-row reverse">
+      <div class="feature-content">
+        <h2>⚡ Instant Answers in URL Bar</h2>
+        <p>Type directly into the address bar and get smart answers without pressing Enter. No search page needed for common queries.</p>
+        <ul class="feature-list">
+          <li>Math: type <code style="color:var(--accent2);">25*4+10</code> → instant result</li>
+          <li>Unit conversion: <code style="color:var(--accent2);">5km to miles</code></li>
+          <li>Temperature: <code style="color:var(--accent2);">100c to f</code></li>
+          <li>Currency: <code style="color:var(--accent2);">50 usd to eur</code></li>
+          <li>Time & date: type <code style="color:var(--accent2);">time</code> or <code style="color:var(--accent2);">today</code></li>
+          <li>Square root: <code style="color:var(--accent2);">sqrt 144</code></li>
+        </ul>
+      </div>
+      <div class="feature-visual">⚡</div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-content">
+        <h2>🎨 Themes & Full Customization</h2>
+        <p>Make the browser truly yours. Choose from 8 carefully crafted presets or design your own color scheme with full accent and background pickers.</p>
+        <ul class="feature-list">
+          <li>☀️ Light, 🌙 Dark, 🌊 Ocean, 🌲 Forest</li>
+          <li>🌸 Pink, 🖤 Midnight, 🍊 Orange, 🟣 Purple</li>
+          <li>Custom accent color picker</li>
+          <li>Custom background color picker</li>
+          <li>Adjustable font size (10–32pt)</li>
+          <li>Compact mode for maximum content space</li>
+        </ul>
+      </div>
+      <div class="feature-visual">🎨</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ DOWNLOAD ══════════════════ -->
+<div class="page" id="download">
+  <div class="download-hero" style="padding:80px 5% 0;">
+    <h1 class="section-title">Download SPS Browser Pro</h1>
+    <p class="section-sub">Free forever. No accounts. No subscriptions. No telemetry.</p>
+  </div>
+  <div style="padding:40px 5% 80px;">
+    <div class="download-grid">
+      <div class="dl-card featured">
+        <div class="dl-os">🪟</div>
+        <h3>Windows</h3>
+        <p>Windows 10 / 11 (64-bit)<br/>Recommended platform</p>
+        <!-- REPLACE href="#" WITH YOUR ACTUAL DOWNLOAD LINK -->
+        <a href="https://github.com/spscompany-rikdev/sps-browser-pro-downnload/releases/download/V23.0.0/SPS.BROWSER.PRO.SETUP.V23.exe" class="dl-btn" id="winDlBtn">⬇ Download for Windows</a>
+        <div class="dl-version">Version 23.0.0 · .exe installer · ~45 MB</div>
+     
+      
+
+    <div class="sys-req">
+      <h3>System Requirements</h3>
+      <div class="req-grid">
+        
+        
+        <div class="req-item"><label>RAM</label><p>4 GB minimum, 8 GB recommended</p></div>
+        <div class="req-item"><label>Disk Space</label><p>200 MB free space</p></div>
+       
+        <div class="req-item"><label>Internet</label><p>Required for browsing (offline mode available)</p></div>
+      </div>
+    </div>
+
+    
+
+<!-- ══════════════════ PRIVACY ══════════════════ -->
+<div class="page" id="privacy">
+  <div class="privacy-hero" style="padding:100px 5% 0;">
+    <div class="shield-visual">🛡️</div>
+    <h1 class="section-title">Your Privacy Comes First</h1>
+    <p class="section-sub">We don't track you, sell your data, or show you ads. SPS Browser Pro is built from the ground up with privacy as the default, not an afterthought.</p>
+  </div>
+  <div style="padding:40px 5% 80px;">
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <h3>🚫 No Telemetry</h3>
+        <p>SPS Browser Pro collects zero browsing data. No usage statistics, no crash reports sent to servers, no analytics — nothing leaves your device.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>🍪 Cookie Isolation</h3>
+        <p>Total Cookie Protection ensures cookies are fully isolated to each website. Cross-site tracking through cookies is structurally impossible.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>🔒 HTTPS-Only Mode</h3>
+        <p>Enable HTTPS-Only mode to automatically upgrade all connections to encrypted HTTPS. Get a warning before visiting any plain HTTP site.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>🕵️ Incognito Tabs</h3>
+        <p>Open incognito tabs with Ctrl+Shift+N. Browsing history, cookies, and form data are never saved. Session disappears on close.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>🖐 Fingerprint Protection</h3>
+        <p>Advanced canvas and WebGL fingerprint protection makes it harder for websites to uniquely identify your browser across sessions.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>🧹 Clear on Exit</h3>
+        <p>Enable "Clear data on exit" to automatically wipe cookies, cache, and site data every time you close the browser — zero traces left.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>📡 Do Not Track</h3>
+        <p>DNT:1 header is sent with every request, signaling to websites that you do not consent to behavioral tracking.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>⛏ Crypto Protection</h3>
+        <p>Cryptomining scripts from 12+ known domains (Coinhive, CryptoLoot, etc.) are blocked at the request level before consuming your CPU.</p>
+      </div>
+      <div class="privacy-card">
+        <h3>📵 Social Blocker</h3>
+        <p>Facebook, Twitter, LinkedIn, and Pinterest tracking pixels are blocked — you can use social sites without being tracked across the web.</p>
+      </div>
+    </div>
+
+    <div class="tracker-list">
+      <h3>🚫 Blocked Tracker Domains (sample)</h3>
+      <div class="tracker-tags">
+        <span class="tracker-tag">doubleclick.net</span>
+        <span class="tracker-tag">adservice.google</span>
+        <span class="tracker-tag">hotjar.com</span>
+        <span class="tracker-tag">mixpanel.com</span>
+        <span class="tracker-tag">segment.io</span>
+        <span class="tracker-tag">amplitude.com</span>
+        <span class="tracker-tag">heap.io</span>
+        <span class="tracker-tag">mouseflow.com</span>
+        <span class="tracker-tag">fullstory.com</span>
+        <span class="tracker-tag">logrocket.com</span>
+        <span class="tracker-tag">criteo.com</span>
+        <span class="tracker-tag">taboola.com</span>
+        <span class="tracker-tag">outbrain.com</span>
+        <span class="tracker-tag">scorecardresearch.com</span>
+        <span class="tracker-tag">quantserve.com</span>
+        <span class="tracker-tag">comscore.com</span>
+        <span class="tracker-tag">connect.facebook.net</span>
+        <span class="tracker-tag">analytics.twitter.com</span>
+        <span class="tracker-tag">snap.licdn.com</span>
+        <span class="tracker-tag">pubmatic.com</span>
+        <span class="tracker-tag">rubiconproject.com</span>
+        <span class="tracker-tag">adnxs.com</span>
+        <span class="tracker-tag">bat.bing.com</span>
+        <span class="tracker-tag">chartbeat.com</span>
+        <span class="tracker-tag">newrelic.com</span>
+        <span class="tracker-tag">datadog.com</span>
+        <span class="tracker-tag">coinhive.com</span>
+        <span class="tracker-tag">cryptoloot.pro</span>
+        <span class="tracker-tag">+ more…</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CHANGELOG ══════════════════ -->
+<div class="page" id="changelog">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">Changelog</h1>
+    <p class="section-sub">A full history of what's been built, fixed, and improved in every release.</p>
+  </div>
+  <div style="padding:0 5% 80px;">
+    <div class="changelog-timeline">
+      <div class="cl-entry latest">
+        <div class="cl-version">
+          <h3>v23.0.0</h3>
+          <span class="cl-date">2025</span>
+          <span class="cl-tag">Latest</span>
+        </div>
+        <ul class="cl-items">
+          <li><span>✨</span> Added Picture-in-Picture auto-detect mode</li>
+          <li><span>✨</span> Tab preview thumbnails on hover</li>
+          <li><span>✨</span> Mouse gesture navigation (right-drag back/forward)</li>
+          <li><span>✨</span> Focus Mode — hide all UI chrome (F11)</li>
+          <li><span>✨</span> Custom proxy support with host/port settings</li>
+          <li><span>✨</span> Wake lock to prevent screen sleep while browsing</li>
+          <li><span>✨</span> Session auto-save every 5 minutes for crash recovery</li>
+          <li><span>✨</span> Tab memory management — suspend idle tabs automatically</li>
+          <li><span>✨</span> Custom homepage URL setting (override speed dial)</li>
+          <li><span>✨</span> Preload hovered links (prefetch on hover)</li>
+          <li><span>🔧</span> Settings now has 14 full sections with new UI</li>
+          <li><span>🔧</span> Tab count shown in window title bar</li>
+          <li><span>🔧</span> Improved update checker with auto-download & install</li>
+          <li><span>🛡️</span> Social tracker blocking expanded to 8 domains</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">
+          <h3>v21.0.0</h3>
+          <span class="cl-date">2024</span>
+        </div>
+        <ul class="cl-items">
+          <li><span>✨</span> Introduced SPS AI Hub with 7 AI assistant shortcuts</li>
+          <li><span>✨</span> Extensions & Userscript manager (JS + CSS injection)</li>
+          <li><span>✨</span> Reading List with read/unread tracking</li>
+          <li><span>✨</span> Notes/Scratchpad with rich text editor and export</li>
+          <li><span>✨</span> Cookie Manager with session cookie clearing</li>
+          <li><span>✨</span> SPS Lens integration (Google Lens by URL)</li>
+          <li><span>✨</span> Page translation via Google Translate</li>
+          <li><span>🔧</span> Bookmarks now support folders and bulk export</li>
+          <li><span>🔧</span> History now supports date filtering (Today / Week / Month)</li>
+          <li><span>🛡️</span> Added XSS auditing and certificate error control</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">
+          <h3>v18.0.0</h3>
+          <span class="cl-date">2024</span>
+        </div>
+        <ul class="cl-items">
+          <li><span>✨</span> Multi-profile support with profile selector on startup</li>
+          <li><span>✨</span> Download Manager with pause/resume/cancel</li>
+          <li><span>✨</span> Password Manager with strength checker and generator</li>
+          <li><span>✨</span> 8 theme presets + full custom color picker</li>
+          <li><span>✨</span> Privacy Dashboard with live blocked counts</li>
+          <li><span>🔧</span> Speed Dial with live clock and 12 quick-access tiles</li>
+          <li><span>🔧</span> Instant answers (math, conversions, time) in URL bar</li>
+          <li><span>🛡️</span> Total Cookie Protection introduced</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">
+          <h3>v12.0.0</h3>
+          <span class="cl-date">2023</span>
+        </div>
+        <ul class="cl-items">
+          <li><span>✨</span> Initial public release</li>
+          <li><span>✨</span> Built on PyQt6 + QtWebEngine</li>
+          <li><span>✨</span> Basic ad blocking and tracker protection</li>
+          <li><span>✨</span> Tabbed browsing with incognito mode</li>
+          <li><span>✨</span> Find-in-page bar</li>
+          <li><span>✨</span> 10 search engine options</li>
+          <li><span>✨</span> User agent spoofing</li>
+          <li><span>✨</span> Screenshot and PDF export</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<div class="page" id="faq">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">Frequently Asked Questions</h1>
+    <p class="section-sub">Everything you need to know about SPS Browser Pro.</p>
+  </div>
+  <div style="padding:0 5% 80px;">
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is SPS Browser Pro free?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes, 100% free. There are no paid plans, no premium features, no subscriptions, and no ads inside the browser. SPS Browser Pro is free forever.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Does it collect my browsing data?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Absolutely not. SPS Browser Pro stores all data locally on your device. No telemetry, no analytics, no crash reports, and no usage data is ever sent to any server. Your browsing stays entirely private.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What OS does it support?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">SPS Browser Pro runs on Windows 10/11, Linux (Ubuntu, Debian, Fedora), and anywhere Python 3.10+ with PyQt6 is available. macOS is supported when running from source.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I install it on Linux?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Install the dependencies with <code style="color:var(--accent2);">pip install PyQt6 PyQt6-WebEngine requests</code> then run <code style="color:var(--accent2);">python sps_browser.py</code>. The Linux .sh script automates this process.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Can I use Chrome extensions?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">SPS Browser Pro uses QtWebEngine which doesn't support the Chrome extension store. However, it has a built-in Userscript Manager where you can inject custom JavaScript and CSS into any page — similar to Greasemonkey/Tampermonkey.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How does the password manager work?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Passwords are stored locally in your profile folder using SHA-256 hashing with a random salt. They never leave your device. You can export them to CSV if needed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What are @ shortcuts in the URL bar?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Type @history, @bookmarks, @downloads, @settings, @passwords, @notes, @reader, @screenshot, @pdf, @devtools, @cookies, @extensions, @focus, @source, @print or @translate directly into the address bar to instantly open those features.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I update SPS Browser Pro?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Click the ⋮ menu → "Check for Updates". If an update is available, SPS Browser Pro will download the new installer automatically and launch it. The browser self-updates. You can also enable "Auto-update" in Settings → Notifications.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Can I have multiple user profiles?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Yes. SPS Browser Pro has full multi-profile support. Each profile has its own settings, bookmarks, history, passwords, cookies, and session data — completely isolated from other profiles.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What is Focus Mode?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">Focus Mode (F11 or Ctrl+Shift+F) hides the toolbar, sidebar, bookmarks bar, and status bar — leaving only the web content visible for distraction-free reading and work. Press F11 again to exit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is there a mobile version?</span><span class="faq-arrow">›</span></div>
+        <div class="faq-a">SPS Browser Pro is currently a desktop application for Windows, Linux, and macOS. A mobile version is under consideration for future development.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<div class="page" id="about">
+  <div class="about-hero" style="padding:100px 5% 0;">
+    <h1 class="section-title">About SPS Browser Pro</h1>
+    <p class="section-sub">Built by developers who believe privacy is a right, not a feature.</p>
+  </div>
+  <div style="padding:40px 5% 80px;">
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">👨‍💻</div>
+        <h3>SPS Dev Team</h3>
+        <p style="color:var(--accent2);">Core Development</p>
+        <span>Lead architect of SPS Browser Pro — PyQt6 engine, privacy system, and full feature set.</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🎨</div>
+        <h3>RikDev</h3>
+        <p style="color:var(--accent2);">UI & Design</p>
+        <span>Responsible for the Speed Dial, theme engine, all custom dialogs, and visual polish.</span>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">🛡️</div>
+        <h3>Privacy Team</h3>
+        <p style="color:var(--accent2);">Security & Privacy</p>
+        <span>Maintains tracker block lists, cookie protection, fingerprint defenses, and security auditing.</span>
+      </div>
+    </div>
+
+    <div class="mission-box">
+      <h2>Our Mission</h2>
+      <p>The internet should be open, fast, and private — for everyone. SPS Browser Pro was built because we believe users shouldn't have to trade their privacy for a good browsing experience. Every feature we ship is designed to put you in control of your data, your experience, and your digital life. No ads. No tracking. No compromise.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:40px auto 0;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">🏗️</div>
+        <h4 style="font-family:'Syne',sans-serif;">Built With</h4>
+        <p style="color:var(--text2);font-size:0.85rem;margin-top:6px;">Python · PyQt6 · QtWebEngine · PyQt6-WebEngine</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">📅</div>
+        <h4 style="font-family:'Syne',sans-serif;">Since</h4>
+        <p style="color:var(--text2);font-size:0.85rem;margin-top:6px;">2023 · Continuously updated</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">📜</div>
+        <h4 style="font-family:'Syne',sans-serif;">License</h4>
+        <p style="color:var(--text2);font-size:0.85rem;margin-top:6px;">Free to use · Source available</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:2rem;margin-bottom:8px;">🌐</div>
+        <h4 style="font-family:'Syne',sans-serif;">Hosted On</h4>
+        <p style="color:var(--text2);font-size:0.85rem;margin-top:6px;">GitHub Pages · GitHub Releases</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SCREENSHOTS ══════════════════ -->
+<div class="page" id="screenshots">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">Screenshots</h1>
+    <p class="section-sub">A visual tour of every major feature in SPS Browser Pro.</p>
+  </div>
+  <div style="padding:0 5% 80px;">
+    <div class="ss-grid">
+      <div class="ss-card">
+        <div class="ss-preview">
+          <div class="ss-bar"><div class="ss-dots"><div class="ss-dot" style="background:#ef4444;"></div><div class="ss-dot" style="background:#f59e0b;"></div><div class="ss-dot" style="background:#22c55e;"></div></div>&nbsp; 🔒 New Tab</div>
+          <div class="ss-content">
+            <div class="ss-tile">🔍</div><div class="ss-tile">📺</div>
+            <div class="ss-tile">🐙</div><div class="ss-tile">🧠</div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>Speed Dial</h4><p>Live clock, quick-access tiles, and search bar on every new tab.</p></div>
+      </div>
+      <div class="ss-card">
+        <div class="ss-preview" style="background:var(--bg);">
+          <div style="background:var(--card);border-radius:10px;padding:16px;font-size:.8rem;">
+            <div style="color:var(--accent2);font-weight:700;margin-bottom:10px;">🛡️ Privacy Dashboard</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--text2);">Trackers blocked</span><span style="color:var(--danger);font-weight:700;">2,341</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="color:var(--text2);">Ads blocked</span><span style="color:var(--accent);font-weight:700;">1,802</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Total blocked</span><span style="color:var(--success);font-weight:700;">4,143</span></div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>Privacy Dashboard</h4><p>Live stats on every threat blocked by the Privacy Shield.</p></div>
+      </div>
+      <div class="ss-card">
+        <div class="ss-preview">
+          <div style="background:var(--card);border-radius:10px;padding:16px;font-size:.8rem;">
+            <div style="color:var(--accent2);font-weight:700;margin-bottom:10px;">🔐 Password Manager</div>
+            <div style="background:var(--bg2);border-radius:6px;padding:8px;margin-bottom:6px;font-size:.75rem;color:var(--text2);">github.com &nbsp;·&nbsp; myuser &nbsp;·&nbsp; ••••••••</div>
+            <div style="background:var(--bg2);border-radius:6px;padding:8px;margin-bottom:6px;font-size:.75rem;color:var(--text2);">gmail.com &nbsp;·&nbsp; me@email &nbsp;·&nbsp; ••••••••</div>
+            <div style="background:var(--bg2);border-radius:6px;padding:8px;font-size:.75rem;color:var(--text2);">reddit.com &nbsp;·&nbsp; user123 &nbsp;·&nbsp; ••••••••</div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>Password Manager</h4><p>Store, search, generate, and copy passwords with one click.</p></div>
+      </div>
+      <div class="ss-card">
+        <div class="ss-preview">
+          <div style="background:var(--card);border-radius:10px;padding:16px;font-size:.8rem;">
+            <div style="color:var(--accent2);font-weight:700;margin-bottom:12px;">🤖 AI Hub</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div style="background:var(--bg2);border-radius:6px;padding:8px;text-align:center;font-size:.75rem;">🧠 ChatGPT</div>
+              <div style="background:var(--bg2);border-radius:6px;padding:8px;text-align:center;font-size:.75rem;">🔷 Gemini</div>
+              <div style="background:var(--bg2);border-radius:6px;padding:8px;text-align:center;font-size:.75rem;">🤖 Claude</div>
+              <div style="background:var(--bg2);border-radius:6px;padding:8px;text-align:center;font-size:.75rem;">🌊 Perplexity</div>
+            </div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>AI Hub</h4><p>One-click access to 7 leading AI assistants from the toolbar.</p></div>
+      </div>
+      <div class="ss-card">
+        <div class="ss-preview">
+          <div style="background:var(--card);border-radius:10px;padding:16px;font-size:.8rem;display:flex;flex-direction:column;gap:8px;">
+            <div style="color:var(--accent2);font-weight:700;">⚙️ Settings — 14 Sections</div>
+            <div style="display:flex;gap:8px;">
+              <div style="width:60px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;">
+                <div style="background:rgba(26,115,232,.2);border-radius:4px;padding:4px;font-size:.65rem;color:var(--accent2);">🏠 General</div>
+                <div style="background:var(--bg2);border-radius:4px;padding:4px;font-size:.65rem;color:var(--text2);">🔒 Privacy</div>
+                <div style="background:var(--bg2);border-radius:4px;padding:4px;font-size:.65rem;color:var(--text2);">🎨 Theme</div>
+              </div>
+              <div style="flex:1;background:var(--bg2);border-radius:6px;padding:8px;font-size:.7rem;color:var(--text2);">Dark Mode, zoom, fonts, bookmarks bar, tab count, homepage URL…</div>
+            </div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>Settings Panel</h4><p>14 pages of granular settings covering every browser behaviour.</p></div>
+      </div>
+      <div class="ss-card">
+        <div class="ss-preview">
+          <div style="background:var(--card);border-radius:10px;padding:16px;font-size:.8rem;">
+            <div style="color:var(--accent2);font-weight:700;margin-bottom:10px;">📝 Notes — My Notes</div>
+            <div style="background:var(--bg2);border-radius:6px;padding:10px;font-size:.75rem;color:var(--text2);line-height:1.6;">Research notes for project X…<br/>— Check PyQt6 docs<br/>— Update README<br/>— Test on Linux</div>
+          </div>
+        </div>
+        <div class="ss-label"><h4>Notes Scratchpad</h4><p>Rich-text notes with titles, formatting, copy, and TXT export.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<div class="page" id="contact">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">Get In Touch</h1>
+    <p class="section-sub">Have a question, bug report, or feature request? We'd love to hear from you.</p>
+  </div>
+  <div style="padding:0 5% 80px;">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Contact SPS Browser Pro</h2>
+        <p>Whether you've found a bug, have a feature idea, or just want to say thanks — reach out through any of the channels below. We read every message.</p>
+        <div class="contact-links">
+          <a href="https://github.com/spscompany-rikdev" target="_blank" class="contact-link"><span>🐙</span> GitHub — spscompany-rikdev</a>
+          <a href="https://sites.google.com/view/spsbrowserpro" target="_blank" class="contact-link"><span>🌐</span> Official Google Site</a>
+          <a href="https://spscompany-rikdev.github.io/sps-search-engine" target="_blank" class="contact-link"><span>⭐</span> SPS Search Engine</a>
+          <a href="https://spscompany-rikdev.github.io/SPS-AI-STUDIO" target="_blank" class="contact-link"><span>🤖</span> SPS AI Studio</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="e.g. Riku Dev"/></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"/></div>
+        <div class="form-group">
+          <label>Topic</label>
+          <select>
+            <option>Bug Report</option>
+            <option>Feature Request</option>
+            <option>General Question</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Describe your issue or idea in detail…"></textarea></div>
+        <button class="form-submit" onclick="handleContact()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ USER GUIDE ══════════════════ -->
+<div class="page" id="guide">
+  <div style="padding:100px 5% 60px;text-align:center;">
+    <h1 class="section-title">User Guide</h1>
+    <p class="section-sub">Everything you need to master SPS Browser Pro in minutes.</p>
+  </div>
+  <div style="padding:0 5% 80px;">
+    <div class="guide-layout">
+      <div class="guide-nav">
+        <h4>Contents</h4>
+        <a href="#g-start" onclick="scrollGuide('g-start')">Getting Started</a>
+        <a href="#g-tabs" onclick="scrollGuide('g-tabs')">Tab Management</a>
+        <a href="#g-privacy" onclick="scrollGuide('g-privacy')">Privacy Features</a>
+        <a href="#g-passwords" onclick="scrollGuide('g-passwords')">Passwords</a>
+        <a href="#g-shortcuts" onclick="scrollGuide('g-shortcuts')">Keyboard Shortcuts</a>
+        <a href="#g-atcmds" onclick="scrollGuide('g-atcmds')">@ URL Commands</a>
+        <a href="#g-settings" onclick="scrollGuide('g-settings')">Settings</a>
+        <a href="#g-themes" onclick="scrollGuide('g-themes')">Themes</a>
+        <a href="#g-profiles" onclick="scrollGuide('g-profiles')">Profiles</a>
+        <a href="#g-updates" onclick="scrollGuide('g-updates')">Updates</a>
+      </div>
+      <div class="guide-content">
+        <section id="g-start">
+          <h2>Getting Started</h2>
+          <p>After installing SPS Browser Pro, you'll be greeted by the Profile Selector. Create a profile or use the Default one to begin. Your profile stores all settings, bookmarks, history, passwords, and extensions.</p>
+          <h3>First Launch Checklist</h3>
+          <p>On first launch, consider configuring: your preferred search engine (Settings → Search), download folder (Settings → Downloads), and privacy features (Settings → Privacy).</p>
+          <div class="guide-tip"><strong>💡 Tip:</strong> Press <kbd class="kbd">Ctrl+L</kbd> at any time to instantly focus the URL bar. Start typing to search or navigate.</div>
+        </section>
+        <section id="g-tabs">
+          <h2>Tab Management</h2>
+          <p>SPS Browser Pro supports unlimited tabs with full management features. Tabs can be pinned, muted, moved to new windows, and reopened after accidental closure.</p>
+          <h3>Tab Actions</h3>
+          <p>Right-click any tab to: Duplicate, Pin, Mute, Move to New Window, Add to Reading List, Close, Close Others, or Close Tabs to Right.</p>
+          <div class="guide-tip"><strong>💡 Tip:</strong> Closed tabs are remembered. Press <kbd class="kbd">Ctrl+Shift+T</kbd> to reopen the last closed tab.</div>
+        </section>
+        <section id="g-privacy">
+          <h2>Privacy Features</h2>
+          <p>All privacy features are active by default. Open Settings → Privacy & Security to fine-tune which protections are enabled.</p>
+          <h3>Privacy Shield</h3>
+          <p>The built-in interceptor blocks ads, trackers, cryptominers, and social pixels at the network level — before any request leaves your machine.</p>
+          <h3>Incognito Mode</h3>
+          <p>Press <kbd class="kbd">Ctrl+Shift+N</kbd> to open an incognito tab. History, cookies, and form data are never saved. Each incognito session is fully isolated.</p>
+        </section>
+        <section id="g-passwords">
+          <h2>Password Manager</h2>
+          <p>Access the password manager from the sidebar (🔐) or via @passwords in the URL bar. Add entries manually or let auto-fill handle it on login forms.</p>
+          <h3>Generating Passwords</h3>
+          <p>Click ⚡ Generate in the Password Manager to create a secure password. Adjust length (8–64) and toggle symbols. Click ✓ Use to apply it to the password field.</p>
+        </section>
+        <section id="g-shortcuts">
+          <h2>Keyboard Shortcuts</h2>
+          <table class="shortcut-table">
+            <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><kbd class="kbd">Ctrl+T</kbd></td><td>New tab</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+W</kbd></td><td>Close current tab</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+Shift+T</kbd></td><td>Reopen last closed tab</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+L</kbd></td><td>Focus URL bar</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+R / F5</kbd></td><td>Reload page</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+Shift+R</kbd></td><td>Hard reload (bypass cache)</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+B</kbd></td><td>Toggle sidebar</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+D</kbd></td><td>Bookmark current page</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+H</kbd></td><td>Open History</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+J</kbd></td><td>Open Downloads</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+F</kbd></td><td>Find in page</td></tr>
+              <tr><td><kbd class="kbd">Ctrl++ / Ctrl+-</kbd></td><td>Zoom in / out</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+0</kbd></td><td>Reset zoom to 100%</td></tr>
+              <tr><td><kbd class="kbd">F12</kbd></td><td>Developer Tools</td></tr>
+              <tr><td><kbd class="kbd">F11</kbd></td><td>Toggle Focus Mode</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+Shift+N</kbd></td><td>New incognito tab</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+M</kbd></td><td>Mute / unmute tab</td></tr>
+              <tr><td><kbd class="kbd">Alt+←/→</kbd></td><td>Navigate back / forward</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+Tab</kbd></td><td>Next tab</td></tr>
+              <tr><td><kbd class="kbd">Ctrl+P</kbd></td><td>Print page</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="g-atcmds">
+          <h2>@ URL Commands</h2>
+          <p>Type any of these commands directly in the URL bar and press Enter to instantly open features:</p>
+          <table class="shortcut-table">
+            <thead><tr><th>Command</th><th>Opens</th></tr></thead>
+            <tbody>
+              <tr><td><kbd class="kbd">@history</kbd></td><td>Browsing History</td></tr>
+              <tr><td><kbd class="kbd">@bookmarks</kbd></td><td>Bookmarks</td></tr>
+              <tr><td><kbd class="kbd">@downloads</kbd></td><td>Download Manager</td></tr>
+              <tr><td><kbd class="kbd">@settings</kbd></td><td>Settings</td></tr>
+              <tr><td><kbd class="kbd">@passwords</kbd></td><td>Password Manager</td></tr>
+              <tr><td><kbd class="kbd">@notes</kbd></td><td>Notes Scratchpad</td></tr>
+              <tr><td><kbd class="kbd">@reader</kbd></td><td>Toggle Reader Mode</td></tr>
+              <tr><td><kbd class="kbd">@screenshot</kbd></td><td>Screenshot Tool</td></tr>
+              <tr><td><kbd class="kbd">@pdf</kbd></td><td>Export to PDF</td></tr>
+              <tr><td><kbd class="kbd">@devtools</kbd></td><td>Developer Tools</td></tr>
+              <tr><td><kbd class="kbd">@cookies</kbd></td><td>Cookie Manager</td></tr>
+              <tr><td><kbd class="kbd">@extensions</kbd></td><td>Extensions Manager</td></tr>
+              <tr><td><kbd class="kbd">@focus</kbd></td><td>Toggle Focus Mode</td></tr>
+              <tr><td><kbd class="kbd">@translate</kbd></td><td>Translate Page</td></tr>
+              <tr><td><kbd class="kbd">@privacy</kbd></td><td>Privacy Dashboard</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section id="g-settings">
+          <h2>Settings</h2>
+          <p>Open Settings via the sidebar (⚙️), ⋮ menu → Settings, or by typing @settings. There are 14 sections covering every browser behaviour.</p>
+          <h3>Key Settings Sections</h3>
+          <p><strong>General</strong> — startup, zoom, homepage, tab behaviour<br/>
+          <strong>Privacy & Security</strong> — all privacy toggles<br/>
+          <strong>Ad & Tracker Blocking</strong> — individual blocking engines<br/>
+          <strong>Appearance</strong> — themes, font size, focus mode<br/>
+          <strong>Network & Proxy</strong> — custom proxy, user agent spoofing<br/>
+          <strong>Performance</strong> — hardware acceleration, tab memory limits</p>
+        </section>
+        <section id="g-themes">
+          <h2>Themes</h2>
+          <p>Go to Settings → Appearance to choose from 8 preset themes or create your own. Changes apply live across the entire UI including tabs, sidebar, toolbar, and dialogs.</p>
+          <div class="guide-tip"><strong>🎨 Themes available:</strong> ☀️ Light · 🌙 Dark · 🌊 Ocean · 🌲 Forest · 🌸 Pink · 🖤 Midnight · 🍊 Orange · 🟣 Purple</div>
+        </section>
+        <section id="g-profiles">
+          <h2>Profiles</h2>
+          <p>Each profile is a completely separate browser identity with its own settings, bookmarks, history, cookies, passwords, notes, and extensions. Profiles are stored in <code style="color:var(--accent2);">~/.sps_browser_v21/profiles/</code></p>
+          <p>Open Profile Manager from the sidebar (👤) or ⋮ menu → Manage Profiles. You can create, rename, or delete profiles — the Default profile cannot be deleted.</p>
+        </section>
+        <section id="g-updates">
+          <h2>Auto-Updates</h2>
+          <p>SPS Browser Pro checks for updates at <code style="color:var(--accent2);">sites.google.com/view/spsbrowserpro/updates</code>. When a newer version is detected, the browser downloads the new installer and runs it automatically, then removes the old version.</p>
+          <p>Enable or disable auto-update in Settings → Notifications. Manual check: ⋮ menu → Check for Updates.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="nav-logo">SPS Browser Pro</span>
+      <p>A free, privacy-first desktop browser built with PyQt6. No tracking. No ads. No compromise. Your data stays on your device — always.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a onclick="showPage('features')">Features</a>
+      <a onclick="showPage('download')">Download</a>
+      <a onclick="showPage('screenshots')">Screenshots</a>
+      <a onclick="showPage('changelog')">Changelog</a>
+    </div>
+    <div class="footer-col">
+      <h4>Learn</h4>
+      <a onclick="showPage('guide')">User Guide</a>
+      <a onclick="showPage('faq')">FAQ</a>
+      <a onclick="showPage('privacy')">Privacy Policy</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://github.com/spscompany-rikdev" target="_blank">GitHub</a>
+      <a href="https://spscompany-rikdev.github.io/sps-search-engine" target="_blank">SPS Search</a>
+      <a href="https://spscompany-rikdev.github.io/SPS-AI-STUDIO" target="_blank">SPS AI Studio</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SPS Browser Pro — All rights reserved</p>
+    <p style="color:var(--text2);">Built with ❤️ using Python · PyQt6 · QtWebEngine</p>
+  </div>
+</footer>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif"></div>
+
+<script>
+// ── PAGE ROUTING ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(id);
+  if (page) { page.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// ── MOBILE NAV ──
+function toggleMobileNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ── FAQ ──
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+}
+
+// ── CONTACT ──
+function handleContact() {
+  const inputs = document.querySelectorAll('#contact input, #contact textarea');
+  let valid = true;
+  inputs.forEach(i => { if(!i.value.trim()) valid = false; });
+  if(!valid) { showNotif('Please fill in all fields.','error'); return; }
+  showNotif('Message sent! We\'ll get back to you soon. ✅','success');
+  inputs.forEach(i => i.value = '');
+}
+
+// ── NOTIFICATIONS ──
+function showNotif(msg, type='success') {
+  const n = document.getElementById('notif');
+  n.textContent = msg;
+  n.className = `notif ${type} show`;
+  setTimeout(() => n.classList.remove('show'), 3500);
+}
+
+// ── GUIDE SCROLL ──
+function scrollGuide(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── FADE IN OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.feat-card,.privacy-card,.dl-card,.ss-card,.team-card').forEach(el => {
+  el.classList.add('fade-in'); observer.observe(el);
+});
+
+// ── DOWNLOAD BUTTON ──
+// Replace '#' in dl-btn hrefs with your actual download URL
+// Example: document.getElementById('winDlBtn').href = 'https://your-link-here/SPS_Browser_Setup.exe';
+
+// ── ACTIVE NAV HIGHLIGHT ──
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('.nav-links a').forEach(x => x.classList.remove('active-nav'));
+    this.classList.add('active-nav');
+  });
+});
+</script>
+</body>
+</html>
