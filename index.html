@@ -455,22 +455,40 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 5% 
         <!-- REPLACE href="#" WITH YOUR ACTUAL DOWNLOAD LINK -->
         <a href="https://github.com/spscompany-rikdev/sps-browser-pro-downnload/releases/download/V23.0.0/SPS.BROWSER.PRO.SETUP.V23.exe" class="dl-btn" id="winDlBtn">⬇ Download for Windows</a>
         <div class="dl-version">Version 23.0.0 · .exe installer · ~45 MB</div>
+      </div>
      
-      
+      </div>
+      <div class="dl-card">
+        <div class="dl-os">🐍</div>
+        <h3>Python Source</h3>
+        <p>Run on any OS<br/>Requires Python + PyQt6</p>
+        <a href="#" class="dl-btn outline">⬇ Download Source (.py)</a>
+        <div class="dl-version">Version 23.0.0 · .py file · ~180 KB</div>
+      </div>
+    </div>
 
     <div class="sys-req">
       <h3>System Requirements</h3>
       <div class="req-grid">
-        
-        
+        <div class="req-item"><label>Operating System</label><p>Windows 10/11, Ubuntu 20.04+, macOS 12+</p></div>
+        <div class="req-item"><label>Python</label><p>3.10 or newer (for source version)</p></div>
         <div class="req-item"><label>RAM</label><p>4 GB minimum, 8 GB recommended</p></div>
         <div class="req-item"><label>Disk Space</label><p>200 MB free space</p></div>
-       
+        <div class="req-item"><label>Dependencies</label><p>PyQt6, PyQt6-WebEngine, requests</p></div>
         <div class="req-item"><label>Internet</label><p>Required for browsing (offline mode available)</p></div>
       </div>
     </div>
 
-    
+    <div style="max-width:700px;margin:40px auto 0;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;">
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:16px;">📦 Install from Source</h3>
+      <pre style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:0.85rem;color:#4ade80;overflow-x:auto;"><code># Install dependencies
+pip install PyQt6 PyQt6-WebEngine requests
+
+# Run the browser
+python sps_browser.py</code></pre>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════ PRIVACY ══════════════════ -->
 <div class="page" id="privacy">
